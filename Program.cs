@@ -70,18 +70,23 @@ public class Program
 
                     Cat kotik = new Cat(catName);
 
-                    Console.Write("Введите количество мяуканий: ");
-                    if (int.TryParse(Console.ReadLine(), out int meowCount) && meowCount > 0)
+                    while (true)
                     {
-                        MeowCounter meowCounter = new MeowCounter(kotik);
-                        meowCounter.Meow(meowCount);
+                        Console.WriteLine("Введите количество мяуканий (положительное число):");
 
-                        int count = meowCounter.GetMeowCount();
-                        Console.WriteLine($"Количество мяуканий: {count}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Некорректное количество мяуканий. Пожалуйста, введите положительное число.");
+                        if (int.TryParse(Console.ReadLine(), out int meowCount) && meowCount > 0)
+                        {
+                            MeowCounter meowCounter = new MeowCounter(kotik);
+                            meowCounter.Meow(meowCount);
+
+                            int count = meowCounter.GetMeowCount();
+                            Console.WriteLine($"Количество мяуканий: {count}");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Некорректное количество мяуканий. Пожалуйста, введите положительное число.");
+                        }
                     }
                     break;
 
