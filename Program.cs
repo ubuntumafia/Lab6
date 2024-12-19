@@ -32,15 +32,27 @@ public class Program
 
                 case "2":
                     Console.WriteLine("Введите имя первого кота: ");
-                    string catName1 = Console.ReadLine();
+                    string catName1;
+                    while (string.IsNullOrWhiteSpace(catName1 = Console.ReadLine()))
+                    {
+                        Console.WriteLine("Имя не может быть пустым. Пожалуйста, введите имя снова.");
+                    }
                     Cat pushistik = new Cat(catName1);
 
-                    Console.WriteLine("Введите имя первого кота: ");
-                    string catName2 = Console.ReadLine();
+                    Console.WriteLine("Введите имя второго кота: ");
+                    string catName2;
+                    while (string.IsNullOrWhiteSpace(catName2 = Console.ReadLine()))
+                    {
+                        Console.WriteLine("Имя не может быть пустым. Пожалуйста, введите имя снова.");
+                    }
                     Cat murka = new Cat(catName2);
 
-                    Console.WriteLine("Введите имя первого кота: ");
-                    string catName3 = Console.ReadLine();
+                    Console.WriteLine("Введите имя третьего кота: ");
+                    string catName3;
+                    while (string.IsNullOrWhiteSpace(catName3 = Console.ReadLine()))
+                    {
+                        Console.WriteLine("Имя не может быть пустым. Пожалуйста, введите имя снова.");
+                    }
                     Cat matros = new Cat(catName3);
 
                     IMeow[] cats = new IMeow[] { pushistik, murka, matros };
@@ -51,6 +63,11 @@ public class Program
                 case "3":
                     Console.Write("Введите имя кота: ");
                     string catName = Console.ReadLine();
+                    while (string.IsNullOrWhiteSpace(catName = Console.ReadLine()))
+                    {
+                        Console.WriteLine("Имя не может быть пустым. Пожалуйста, введите имя снова.");
+                    }
+
                     Cat kotik = new Cat(catName);
 
                     Console.Write("Введите количество мяуканий: ");
