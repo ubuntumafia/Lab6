@@ -6,7 +6,7 @@ namespace Lab6
     {
         private int numerator;   // Числитель
         private int denominator; // Знаменатель
-        private double? cachedDecimalValue;
+        private FractionCache cache = new FractionCache();
 
         // Конструктор
         public Fraction(int numerator, int denominator)
@@ -101,7 +101,6 @@ namespace Lab6
             return false;
         }
 
-        // Переопределение метода GetHashCode
         public override int GetHashCode()
         {
             return HashCode.Combine(numerator, denominator);
@@ -109,18 +108,14 @@ namespace Lab6
 
         public double GetDecimalValue()
         {
-            if (!cachedDecimalValue.HasValue)
-            {
-                cachedDecimalValue = (double)numerator / denominator; // Кэшируем значение
-            }
-            return cachedDecimalValue.Value;
+            return cache.GetCachedValue(numerator, denominator); // Получаем кэшированное значение
         }
 
         // Метод для установки числителя
         public void SetNumerator(int numerator)
         {
             this.numerator = numerator;
-            cachedDecimalValue = null; // Сбрасываем кэш
+            cache.InvalidateCache(); // Сбрасываем кэш
             Reduce();
         }
 
@@ -133,7 +128,7 @@ namespace Lab6
             }
 
             this.denominator = denominator;
-            cachedDecimalValue = null; // Сбрасываем кэш
+            cache.InvalidateCache(); // Сбрасываем кэш
             Reduce();
         }
 
